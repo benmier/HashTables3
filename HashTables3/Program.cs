@@ -10,7 +10,16 @@ namespace HashTables3
     {
         static void Main(string[] args)
         {
+            HashFuntion3 wordHashTable = new HashFuntion3(11);
+            string wordLookUp = "a";
+            while (!wordLookUp.Equals("quit"))
+            {
+                Console.Write(": ");
+                wordLookUp = Console.ReadLine();
+                Console.WriteLine(wordHashTable.find(wordLookUp).toString());
+            }
 
+            wordHashTable.displayTheArray();
         }
     }
 
@@ -62,9 +71,9 @@ namespace HashTables3
         public void displayWordList()
         {
             Word current = firstWord;
-            while(current != null)
+            while (current != null)
             {
-                Console.WriteLine(current);
+                Console.WriteLine(current.toString());
                 current = current.next;
             }
         }
@@ -72,9 +81,9 @@ namespace HashTables3
         public Word find(int hashKey)
         {
             Word current = firstWord;
-            while(current != null && current.key <= hashKey)
+            while (current != null && current.key <= hashKey)
             {
-                if(current.key == hashKey)
+                if (current.key == hashKey)
                 {
                     return current;
                 }
@@ -91,7 +100,7 @@ namespace HashTables3
         WordList[] theArray;
         int arraySize;
 
-        public List<string> elementsToAdd = new List<string>
+        public string[,] elementsToAdd = new string[,]
         {
             { "ace", "Very good" },
             { "act", "Take action" },
@@ -124,7 +133,7 @@ namespace HashTables3
             { "aye", "An affirmative answer" }
     };
 
-        HashFuntion3(int size)
+        public HashFuntion3(int size)
         {
             arraySize = size;
             theArray = new WordList[size];
@@ -132,6 +141,43 @@ namespace HashTables3
             {
                 theArray[i] = new WordList();
             }
+
+            addTheArray(elementsToAdd);
+        }
+
+        public void addTheArray(string[,] elementsToAdd)
+        {
+            for (int i = 0; i < elementsToAdd.Length / 2; i++)
+            {
+                string word = elementsToAdd[i, 0];
+                string definition = elementsToAdd[i, 1];
+                Word newWord = new Word(word, definition);
+                insert(newWord);
+            }
+        }
+
+        public Word find(string wordToFind)
+        {
+            int hashKey = stringHashFunction(wordToFind);
+            Word theWord = theArray[hashKey].find(hashKey);
+            return theWord;
+        }
+
+        public void displayTheArray()
+        {
+            for (int i = 0; i < arraySize; i++)
+            {
+                Console.Write($"theArray Index {i}: ");
+                theArray[i].displayWordList();
+            }
+        }
+
+        public void insert(Word newWord)
+        {
+            string wordToHash = newWord.theWord;
+            int hashKey = stringHashFunction(wordToHash);
+
+            theArray[hashKey].insert(newWord, hashKey);
         }
 
         public int stringHashFunction(string wordToHash)
@@ -143,7 +189,7 @@ namespace HashTables3
                 int hashKeyValueTemp = hashKeyValue;
                 hashKeyValue = (hashKeyValue * 27 + charCode) % arraySize;
                 Console.WriteLine(
-                    $"Hash Key Value {hashKeyValue} * 27 + Character Code {charCode} % arraySize = {arraySize} hashKeyValue\n");
+                    $"Hash Key Value {hashKeyValueTemp} * 27 + Character Code {charCode} % arraySize {arraySize} = {hashKeyValue}");
             }
             return hashKeyValue;
         }

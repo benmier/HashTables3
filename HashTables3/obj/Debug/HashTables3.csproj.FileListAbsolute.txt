@@ -1,1 +1,7 @@
 c:\users\v-bemier\documents\visual studio 2015\Projects\HashTables3\HashTables3\bin\Debug\HashTables3.exe.config
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\HashTables3\HashTables3\bin\Debug\HashTables3.exe.config
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\HashTables3\HashTables3\bin\Debug\HashTables3.exe
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\HashTables3\HashTables3\bin\Debug\HashTables3.pdb
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\HashTables3\HashTables3\obj\Debug\HashTables3.csprojResolveAssemblyReference.cache
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\HashTables3\HashTables3\obj\Debug\HashTables3.exe
+C:\Users\Ben\Documents\Visual Studio 2015\Projects\HashTables3\HashTables3\obj\Debug\HashTables3.pdb
